@@ -1,0 +1,22 @@
+{
+    "KPlugin": {
+        "Id": "org.kde.plasma.tradingview",
+        "Name": "TradingView Market Overview",
+        "Description": "Display live market data from TradingView",
+        "Category": "Financial",
+        "Authors": [
+            {
+                "Name": "StrKare",
+                "Email": "berrybasedberry@gmail.com"
+            }
+        ],
+        "Version": "1.0.0",
+        "Website": "https://github.com/StrKare/tradingview-plasma-widget"
+    },
+    "KPackageStructure": "Plasma/Applet",
+    "X-Plasma-API": "declarativeappletscript",
+    "X-Plasma-MainScript": "ui/main.qml",
+    "X-KDE-ServiceTypes": [
+        "Plasma/Applet"
+    ]
+}
