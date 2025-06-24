@@ -11,14 +11,14 @@ Item {
     Layout.minimumWidth: 350
     Layout.minimumHeight: 500
     Layout.preferredWidth: 450
-    Layout.preferredHeight: 600
+    Layout.preferredHeight: 700
     
     Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
     
     Plasmoid.fullRepresentation: Rectangle {
         anchors.fill: parent
         color: PlasmaCore.Theme.backgroundColor
-        border.color: PlasmaCore.Theme.highlightColor
+        border.color: Qt.rgba(PlasmaCore.Theme.highlightColor.r, PlasmaCore.Theme.highlightColor.g, PlasmaCore.Theme.highlightColor.b, 0.3)
         border.width: 1
         radius: 4
         
@@ -39,191 +39,129 @@ Item {
             }
             
             Component.onCompleted: {
-                var htmlContent = '<!DOCTYPE html>
-                    <html lang="en">
-                    <head>
-                        <meta charset="UTF-8">
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <title>TradingView Widget</title>
-                        <style>
-                            body {
-                                margin: 0;
-                                padding: 0;
-                                overflow: hidden;
-                                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-                                background: #fff;
-                            }
+                var htmlContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradingView Widget</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #232530;
+        }
 
-                            .tradingview-widget-container {
-                                width: 100%;
-                                height: 100vh;
-                            }
+        .tradingview-widget-container {
+            width: 100%;
+            height: 100vh;
+            background: #232530;
+        }
 
-                            .tradingview-widget-container__widget {
-                                width: 100%;
-                                height: calc(100% - 25px);
-                            }
+        .tradingview-widget-container__widget {
+            width: 100%;
+            height: calc(100% - 25px);
+        }
 
-                            .tradingview-widget-copyright {
-                                position: absolute;
-                                bottom: 0;
-                                left: 0;
-                                right: 0;
-                                font-size: 10px;
-                                text-align: center;
-                                padding: 5px;
-                                background: #f8f9fa;
-                            }
+        .tradingview-widget-copyright {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            font-size: 10px;
+            text-align: center;
+            padding: 5px;
+            background: rgba(35, 37, 48, 0.95);
+            border-top: 1px solid #363a45;
+        }
 
-                            .tradingview-widget-copyright a {
-                                text-decoration: none;
-                                color: #2962FF;
-                            }
+        .tradingview-widget-copyright a {
+            text-decoration: none;
+            color: #3d9eff;
+        }
 
-                            .blue-text {
-                                color: #2962FF;
-                            }
-                        </style>
-                    </head>
-                    <body>
-                        <div class="tradingview-widget-container">
-                            <div class="tradingview-widget-container__widget"></div>
-                            <div class="tradingview-widget-copyright">
-                                <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
-                                    <span class="blue-text">Track all markets on TradingView</span>
-                                </a>
-                            </div>
-                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-                                {
-                                    "colorTheme": "light",
-                                    "dateRange": "12M",
-                                    "showChart": true,
-                                    "locale": "en",
-                                    "largeChartUrl": "",
-                                    "isTransparent": false,
-                                    "showSymbolLogo": true,
-                                    "showFloatingTooltip": false,
-                                    "width": "450",
-                                    "height": "600",
-                                    "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
-                                    "plotLineColorFalling": "rgba(41, 98, 255, 1)",
-                                    "gridLineColor": "rgba(240, 243, 250, 0)",
-                                    "scaleFontColor": "rgba(15, 15, 15, 1)",
-                                    "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
-                                    "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
-                                    "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
-                                    "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
-                                    "symbolActiveColor": "rgba(41, 98, 255, 0.12)",
-                                    "tabs": [
-                                        {
-                                            "title": "Indices",
-                                            "symbols": [
-                                                {
-                                                    "s": "FOREXCOM:SPXUSD",
-                                                    "d": "S&P 500 Index"
-                                                },
-                                                {
-                                                    "s": "FOREXCOM:NSXUSD",
-                                                    "d": "US 100 Cash CFD"
-                                                },
-                                                {
-                                                    "s": "FOREXCOM:DJI",
-                                                    "d": "Dow Jones Industrial Average Index"
-                                                },
-                                                {
-                                                    "s": "INDEX:NKY",
-                                                    "d": "Japan 225"
-                                                },
-                                                {
-                                                    "s": "INDEX:DEU40",
-                                                    "d": "DAX Index"
-                                                },
-                                                {
-                                                    "s": "FOREXCOM:UKXGBP",
-                                                    "d": "FTSE 100 Index"
-                                                },
-                                                {
-                                                    "s": "KRX:KOSPI",
-                                                    "d": "KOSPI"
-                                                }
-                                            ],
-                                            "originalTitle": "Indices"
-                                        },
-                                        {
-                                            "title": "Futures",
-                                            "symbols": [
-                                                {
-                                                    "s": "OANDA:XAUUSD",
-                                                    "d": "Gold"
-                                                },
-                                                {
-                                                    "s": "MATBAROFEX:WTI1!",
-                                                    "d": "WTI"
-                                                },
-                                                {
-                                                    "s": "TOCOM:TCL1!",
-                                                    "d": "Dubai Oil"
-                                                },
-                                                {
-                                                    "s": "BLACKBULL:BRENT",
-                                                    "d": "Brent Oil"
-                                                },
-                                                {
-                                                    "s": "CAPITALCOM:NATURALGAS",
-                                                    "d": "Natural Gas"
-                                                }
-                                            ],
-                                            "originalTitle": "Futures"
-                                        },
-                                        {
-                                            "title": "Bonds",
-                                            "symbols": [
-                                                {
-                                                    "s": "NASDAQ:OBIL",
-                                                    "d": "US 1 Year"
-                                                },
-                                                {
-                                                    "s": "PYTH:US10Y",
-                                                    "d": "US 10 Year"
-                                                },
-                                                {
-                                                    "s": "PYTH:US30Y",
-                                                    "d": "US 30 Year"
-                                                },
-                                                {
-                                                    "s": "TVC:JP10",
-                                                    "d": "JP 10Y"
-                                                },
-                                                {
-                                                    "s": "TVC:JP30",
-                                                    "d": "JP 30Y"
-                                                }
-                                            ],
-                                            "originalTitle": "Bonds"
-                                        },
-                                        {
-                                            "title": "Crypto",
-                                            "symbols": [
-                                                {
-                                                    "s": "COINBASE:BTCUSD",
-                                                    "d": "BTC"
-                                                },
-                                                {
-                                                    "s": "BINANCE:XRPUSD",
-                                                    "d": "XRP"
-                                                },
-                                                {
-                                                    "s": "COINBASE:ETHUSD",
-                                                    "d": "ETH"
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            </script>
-                        </div>
-                        </body>
-                    </html>'
+        .blue-text {
+            color: #3d9eff;
+        }
+    </style>
+</head>
+<body>
+    <!-- TradingView Widget BEGIN -->
+    <div class="tradingview-widget-container">
+        
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+        {
+            "colorTheme": "dark",
+            "dateRange": "12M",
+            "showChart": true,
+            "locale": "en",
+            "largeChartUrl": "",
+            "isTransparent": false,
+            "showSymbolLogo": true,
+            "showFloatingTooltip": false,
+            "width": "450",
+            "height": "650",
+            "plotLineColorGrowing": "rgba(38, 166, 154, 1)",
+            "plotLineColorFalling": "rgba(239, 83, 80, 1)",
+            "gridLineColor": "rgba(54, 58, 69, 0.06)",
+            "scaleFontColor": "rgba(209, 212, 220, 1)",
+            "belowLineFillColorGrowing": "rgba(38, 166, 154, 0.12)",
+            "belowLineFillColorFalling": "rgba(239, 83, 80, 0.12)",
+            "belowLineFillColorGrowingBottom": "rgba(38, 166, 154, 0)",
+            "belowLineFillColorFallingBottom": "rgba(239, 83, 80, 0)",
+            "symbolActiveColor": "rgba(61, 158, 255, 0.12)",
+            "tabs": [
+                {
+                    "title": "Indices",
+                    "symbols": [
+                        {"s": "FOREXCOM:SPXUSD", "d": "S&P 500"},
+                        {"s": "FOREXCOM:NSXUSD", "d": "NASDAQ 100"},
+                        {"s": "FOREXCOM:DJI", "d": "Dow Jones"},
+                        {"s": "INDEX:NKY", "d": "Japan 225"},
+                        {"s": "INDEX:DEU40", "d": "DAX"},
+                        {"s": "FOREXCOM:UKXGBP", "d": "FTSE 100"},
+                        {"s": "KRX:KOSPI", "d": "KOSPI"}
+                    ]
+                },
+                {
+                    "title": "Futures",
+                    "symbols": [
+                        {"s": "OANDA:XAUUSD", "d": "Gold"},
+                        {"s": "MATBAROFEX:WTI1!", "d": "WTI Oil"},
+                        {"s": "BLACKBULL:BRENT", "d": "Brent Oil"},
+                        {"s": "CAPITALCOM:NATURALGAS", "d": "Natural Gas"},
+                        {"s": "OANDA:XAGUSD", "d": "Silver"}
+                    ]
+                },
+                {
+                    "title": "Forex",
+                    "symbols": [
+                        {"s": "FX:EURUSD", "d": "EUR/USD"},
+                        {"s": "FX:GBPUSD", "d": "GBP/USD"},
+                        {"s": "FX:USDJPY", "d": "USD/JPY"},
+                        {"s": "FX:USDKRW", "d": "USD/KRW"},
+                        {"s": "FX:AUDUSD", "d": "AUD/USD"}
+                    ]
+                },
+                {
+                    "title": "Crypto",
+                    "symbols": [
+                        {"s": "COINBASE:BTCUSD", "d": "Bitcoin"},
+                        {"s": "COINBASE:ETHUSD", "d": "Ethereum"},
+                        {"s": "BINANCE:XRPUSD", "d": "XRP"},
+                        {"s": "COINBASE:ADAUSD", "d": "Cardano"},
+                        {"s": "COINBASE:SOLUSD", "d": "Solana"}
+                    ]
+                }
+            ]
+        }
+        </script>
+    </div>
+    <!-- TradingView Widget END -->
+</body>
+</html>`
                 loadHtml(htmlContent)
             }
         }
@@ -235,6 +173,7 @@ Item {
             visible: true
             z: 999
             font.pixelSize: 14
+            color: PlasmaCore.Theme.textColor
         }
     }
 }
